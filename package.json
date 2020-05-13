@@ -15,7 +15,7 @@
     "grunt-contrib-uglify": "^0.11.1",
     "grunt-csscomb": "^3.1.0",
     "jquery": "^3.4.0",
-    "lodash": "^4.11.1"
+    "lodash": "^4.17.13"
   },
   "devDependencies": {},
   "scripts": {
