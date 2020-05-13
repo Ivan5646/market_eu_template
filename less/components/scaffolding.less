@@ -1,0 +1,99 @@
+@font-face {
+	font-family: "Circe";
+	src: url("../fonts/Circe.woff");
+}
+@font-face {
+	font-family: "Circe-B";
+	src: url("../fonts/Circe-Bold.woff");
+}
+@font-face {
+	font-family: "Circe-T";
+	src: url("../fonts/Circe-Light.ttf");
+}
+
+
+html, body {
+	padding: 0;
+	margin: 0;
+}
+body {
+	width: 100%;
+	font-family: @circe, Arial, Helvetica, sans-serif;
+}
+
+h1, h2, h3, hgroup, p {
+	margin: 0;
+	padding: 0;
+}
+ul {
+	list-style: none;
+}
+.title {
+	margin-bottom: 17px;
+    font-size: 40px;
+    color: #133058;
+    line-height: 1.2;
+}
+.subtitle {
+	margin-bottom: 25px;
+    font-size: 30px;
+    color: #1e8fca;
+    line-height: 1.2;
+}
+.layout-center-wrapper {
+	position: relative;
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+* {
+	&:focus, &:active, &:hover {
+		outline: none;
+	}
+}
+
+
+/*ADAPTIVE*/
+
+@media @laptop {
+	.layout-center-wrapper {
+		max-width: 900px;
+		padding: 0 15px;
+	}
+}
+@media @tablet {
+	.layout-center-wrapper {
+		max-width: 700px;
+		padding: 0 15px;
+	}
+}
+@media @phablet {
+	.layout-center-wrapper {
+		max-width: 550px;
+		padding: 0 10px;
+	}
+	.subtitle {
+		font-size: 22px;
+	}
+}
+@media @phone {
+	.layout-center-wrapper {
+		max-width: 370px;
+	}
+	.title {
+		font-size: 36px;
+	}
+}
+@media @phone320 {
+	.layout-center-wrapper {
+		max-width: 310px;
+	}
+}

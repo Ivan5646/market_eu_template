@@ -1,0 +1,25 @@
+/*MIXINS*/
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.button {
+	border: none;
+	background-color: #ff9800;
+	font-family: @circe, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #ffffff;
+	line-height: 1;
+	cursor: pointer;
+	&:active {
+		outline: none;
+	}
+	&:hover {
+		background-color: darken(#ff9800, 3%);
+		outline: none;
+	}
+}

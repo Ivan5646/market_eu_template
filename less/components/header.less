@@ -1,0 +1,52 @@
+.header {
+    padding-top: 40px;
+    padding-bottom: 56px;
+    background: -webkit-linear-gradient(90deg,#fffffe,#fbf2e3 40%);
+    &__wrap {
+        position: relative;
+        z-index: 10;
+    }
+    &__inner {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+    &__title {
+        font-family: @circe-b,arial,sans-serif;
+        font-size: 84px;
+        color: #133058;
+        background: -webkit-linear-gradient(#fe9d37,#ff8400);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        margin-bottom: 3px;
+    }
+}
+
+
+/*ADAPTIVE*/
+
+@media @tablet {
+    .header {
+        &__title {
+            font-size: 66px;
+        }
+    }
+}
+@media @phone {
+	.header {
+        margin-bottom: 30px;
+        padding-bottom: 0;
+        &__inner {
+            width: 100%;
+        }
+        &__title {
+            font-size: 56px;
+            line-height: 1.2;
+        }
+        &__description {
+            width: 100%;
+            font-size: 26px;
+        }
+	}
+}

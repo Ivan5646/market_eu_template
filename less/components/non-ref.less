@@ -1,0 +1,25 @@
+.non-ref {
+    &__wrap {
+        width: 90%;
+        margin: auto;
+        margin-bottom: 60px;
+    }
+    &__text {
+        margin-bottom: 10px;
+        font-family: @circe, Arial, Helvetica, sans-serif;
+        font-size: 26px;
+        line-height: 1.4;
+    }
+    &__link {
+        color: #08368b;
+        font-family: @circe-b, Arial, Helvetica, sans-serif;
+        text-decoration: underline;
+    }
+}
+@media @phablet {
+    .non-ref {
+        &__text {
+            font-size: 22px;
+        }
+    }
+}

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Netizens Market</title>
+	<link rel="stylesheet" href="css/style.min.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+</head>
+
+<body>
+	<header class="header">
+		<div class="layout-center-wrapper">
+			<div class="header__wrap">
+				<div class="header__inner">
+					<h1 class="header__title">Netizens Market</h1>
+				</div>
+			</div>
+		</div>
+	</header>
+	<main class="content">
+		<div class="layout-center-wrapper">
+			<!-- PRODUCT BLOCK 1  -->
+			<section class="intro">
+				<article class="intro__right">
+					<img class="intro__img" src="img/logo.png" alt="">
+				</article>
+				<article class="intro__left">
+					<h3 class="title">Welcome to the Netizens online store</h3>
+					<h3 class="subtitle">Here you can order specially selected products for your health and beauty.</h3>
+					<ul class="intro__list">
+						<li class="intro__item">
+							<span>At the moment you can order the products with delivery to: Austria, Belgium, Bulgaria,
+								Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, United Kingdom,
+								Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Netherlands, Poland,
+								Portugal, Romania, Slovakia, Slovenia, Spain, Sweden.</span>
+						</li>
+						<li class="intro__item">
+							<span>Learn more about the Netizens ecosystem on the website <a
+									href="https://ntz.team/?r={{lead_promo}}">https://ntz.team</a></span>
+						</li>
+					</ul>
+				</article>
+			</section>
+		</div>
+
+		<!-- ORDER BLOCK -->
+		<div class="layout-center-wrapper">
+			<section class="order-info">
+				<h2 class="order-info__title">
+					Lamara Beauty Collection
+				</h2>
+				<p class="order-info__subtitle">
+					A luxury collection of skin and body care products specially created to meet the highest
+					requirements regarding skin care.
+				</p>
+				<ul class="order-info__list">
+					{% for item in items['lamara_bc'] %}
+					<li class="order-info__item">
+						<div class="order-info__img-wrap">
+							<img src="{{item['image']}}" class="order-info__img">
+						</div>
+						<div class="order-info__inner">
+							<span class="order-info__name">{{item['name']}}</span>
+							<p class="order-info__description">{{item['description']}}</p>
+							{% if item['description2'] != '' %}
+								<p class="order-info__description">{{item['description2']}}</p>
+							{% end %}
+							<div class="order-info__data" id="quantity_{{item['name']}}">
+								<p class="order-info__text">
+									Quantity:
+								</p>
+								<div class="order-info__quantity-wrap">
+									<span class="order-info__quantity order-info__quantity--minus"
+										onclick="removefromcart('{{item['code']}}','{{item['name']}}')">&minus;</span>
+									<input type="number" name="item_number" id="{{item['code']}}"
+										class="order-info__field items_quantity" value=0 min=0 disabled
+										data-price={{item['price']}}>
+									<span class="order-info__quantity order-info__quantity--plus"
+										onclick="addtocart('{{item['code']}}','{{item['name']}}')">+</span>
+								</div>
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Previous price:
+								</p>
+								<div class="order-info__prew-price">
+									<span class="order-info__price order-info__price--prew">
+										{{item['old_price']}}
+									</span>
+									<span class="order-info__price order-info__price--ntz order-info__price--prew">
+										£
+									</span>
+								</div>
+
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Price:
+								</p>
+								<span class="order-info__price">
+									{{item['price']}}
+								</span>
+								<span class="order-info__price order-info__price--ntz">
+									£
+								</span>
+							</div>
+
+							<input class="order-info__btn order-info__btn--shown noselect" type="button"
+								value="Add to cart" id="addToCardBtn_{{item['code']}}"
+								onclick="addtocart('{{item['code']}}','{{item['name']}}')">
+							<input class="order-info__btn order-info__btn--hidden noselect" type="button"
+								value="Go to cart" id="goToCardBtn_{{item['code']}}" onclick="goToCart();">
+						</div>
+					</li>
+					{% end %}
+				</ul>
+			</section>
+			<section class="order-info">
+				<h2 class="order-info__title">
+					The Vita Energy Shake
+				</h2>
+				<p class="order-info__subtitle">
+					The Vita Energy Shake is made for all those smart people who
+					choose to pursue health, wellness, and a happy life.
+				</p>
+				<ul class="order-info__list">
+					{% for item in items['diavita'] %}
+					<li class="order-info__item">
+						<div class="order-info__img-wrap">
+							<img src="{{item['image']}}" class="order-info__img">
+						</div>
+						<div class="order-info__inner">
+							<span class="order-info__name">{{item['name']}}</span>
+							<p class="order-info__description">{{item['description']}}</p>
+							{% if item['description2'] != '' %}
+								<p class="order-info__description">{{item['description2']}}</p>
+							{% end %}
+							<div class="order-info__data" id="quantity_{{item['name']}}">
+								<p class="order-info__text">
+									Quantity:
+								</p>
+								<div class="order-info__quantity-wrap">
+									<span class="order-info__quantity order-info__quantity--minus"
+										onclick="removefromcart('{{item['code']}}','{{item['name']}}')">&minus;</span>
+									<input type="number" name="item_number" id="{{item['code']}}"
+										class="order-info__field items_quantity" value=0 min=0 disabled
+										data-price={{item['price']}}>
+									<span class="order-info__quantity order-info__quantity--plus"
+										onclick="addtocart('{{item['code']}}','{{item['name']}}')">+</span>
+								</div>
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Previous price:
+								</p>
+								<div class="order-info__prew-price">
+									<span class="order-info__price order-info__price--prew">
+										{{item['old_price']}}
+									</span>
+									<span class="order-info__price order-info__price--ntz order-info__price--prew">
+										£
+									</span>
+								</div>
+
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Price:
+								</p>
+								<span class="order-info__price">
+									{{item['price']}}
+								</span>
+								<span class="order-info__price order-info__price--ntz">
+									£
+								</span>
+							</div>
+
+							<input class="order-info__btn order-info__btn--shown noselect" type="button"
+								value="Add to cart" id="addToCardBtn_{{item['code']}}"
+								onclick="addtocart('{{item['code']}}','{{item['name']}}')">
+							<input class="order-info__btn order-info__btn--hidden noselect" type="button"
+								value="Go to cart" id="goToCardBtn_{{item['code']}}" onclick="goToCart();">
+						</div>
+					</li>
+					{% end %}
+				</ul>
+			</section>
+
+			<section class="order-info">
+				<h2 class="order-info__title">
+					Selenium Sprays
+				</h2>
+				<p class="order-info__subtitle">
+					Selenium is an essential trace element that is part of all cells of the body.
+				</p>
+				<ul class="order-info__list">
+					{% for item in items['spray'] %}
+					<li class="order-info__item">
+						<div class="order-info__img-wrap">
+							<img src="{{item['image']}}" class="order-info__img">
+						</div>
+						<div class="order-info__inner">
+							<span class="order-info__name">{{item['name']}}</span>
+							<p class="order-info__description">{{item['description']}}</p>
+							{% if item['description2'] != '' %}
+								<p class="order-info__description">{{item['description2']}}</p>
+							{% end %}
+							<div class="order-info__data" id="quantity_{{item['name']}}">
+								<p class="order-info__text">
+									Quantity:
+								</p>
+								<div class="order-info__quantity-wrap">
+									<span class="order-info__quantity order-info__quantity--minus"
+										onclick="removefromcart('{{item['code']}}','{{item['name']}}')">&minus;</span>
+									<input type="number" name="item_number" id="{{item['code']}}"
+										class="order-info__field items_quantity" value=0 min=0 disabled
+										data-price={{item['price']}}>
+									<span class="order-info__quantity order-info__quantity--plus"
+										onclick="addtocart('{{item['code']}}','{{item['name']}}')">+</span>
+								</div>
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Previous price:
+								</p>
+								<div class="order-info__prew-price">
+									<span class="order-info__price order-info__price--prew">
+										{{item['old_price']}}
+									</span>
+									<span class="order-info__price order-info__price--ntz order-info__price--prew">
+										£
+									</span>
+								</div>
+
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Price:
+								</p>
+								<span class="order-info__price">
+									{{item['price']}}
+								</span>
+								<span class="order-info__price order-info__price--ntz">
+									£
+								</span>
+							</div>
+
+							<input class="order-info__btn order-info__btn--shown noselect" type="button"
+								value="Add to cart" id="addToCardBtn_{{item['code']}}"
+								onclick="addtocart('{{item['code']}}','{{item['name']}}')">
+							<input class="order-info__btn order-info__btn--hidden noselect" type="button"
+								value="Go to cart" id="goToCardBtn_{{item['code']}}" onclick="goToCart();">
+						</div>
+					</li>
+					{% end %}
+				</ul>
+			</section>
+
+
+			<section class="order-info">
+				<h2 class="order-info__title">
+					Lime Cushion
+				</h2>
+				<p class="order-info__subtitle">
+					Multifunctional cushion that combines the properties of a foundation and moisturizing serum to create the effect of "mirror" skin.
+				</p>
+				<ul class="order-info__list">
+					{% for item in items['lime'] %}
+					<li class="order-info__item">
+						<div class="order-info__img-wrap">
+							<img src="{{item['image']}}" class="order-info__img">
+						</div>
+						<div class="order-info__inner">
+							<span class="order-info__name">{{item['name']}}</span>
+							<p class="order-info__description">{{item['description']}}</p>
+							{% if item['description2'] != '' %}
+								<p class="order-info__description">{{item['description2']}}</p>
+							{% end %}
+							<div class="order-info__data" id="quantity_{{item['name']}}">
+								<p class="order-info__text">
+									Quantity:
+								</p>
+								<div class="order-info__quantity-wrap">
+									<span class="order-info__quantity order-info__quantity--minus"
+										onclick="removefromcart('{{item['code']}}','{{item['name']}}')">&minus;</span>
+									<input type="number" name="item_number" id="{{item['code']}}"
+										class="order-info__field items_quantity" value=0 min=0 disabled
+										data-price={{item['price']}}>
+									<span class="order-info__quantity order-info__quantity--plus"
+										onclick="addtocart('{{item['code']}}','{{item['name']}}')">+</span>
+								</div>
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Previous price:
+								</p>
+								<div class="order-info__prew-price">
+									<span class="order-info__price order-info__price--prew">
+										{{item['old_price']}}
+									</span>
+									<span class="order-info__price order-info__price--ntz order-info__price--prew">
+										£
+									</span>
+								</div>
+
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Price:
+								</p>
+								<span class="order-info__price">
+									{{item['price']}}
+								</span>
+								<span class="order-info__price order-info__price--ntz">
+									£
+								</span>
+							</div>
+
+							<input class="order-info__btn order-info__btn--shown noselect" type="button"
+								value="Add to cart" id="addToCardBtn_{{item['code']}}"
+								onclick="addtocart('{{item['code']}}','{{item['name']}}')">
+							<input class="order-info__btn order-info__btn--hidden noselect" type="button"
+								value="Go to cart" id="goToCardBtn_{{item['code']}}" onclick="goToCart();">
+						</div>
+					</li>
+					{% end %}
+				</ul>
+			</section>
+
+			<section class="order-info">
+				<h2 class="order-info__title">
+					Noni Tea
+				</h2>
+				<p class="order-info__subtitle">
+					Noni is one of the most important herbs, it has helped many people.
+				</p>
+				<ul class="order-info__list">
+					{% for item in items['noni'] %}
+					<li class="order-info__item">
+						<div class="order-info__img-wrap">
+							<img src="{{item['image']}}" class="order-info__img">
+						</div>
+						<div class="order-info__inner">
+							<span class="order-info__name">{{item['name']}}</span>
+							<p class="order-info__description">{{item['description']}}</p>
+							{% if item['description2'] != '' %}
+								<p class="order-info__description">{{item['description2']}}</p>
+							{% end %}
+							<div class="order-info__data" id="quantity_{{item['name']}}">
+								<p class="order-info__text">
+									Quantity:
+								</p>
+								<div class="order-info__quantity-wrap">
+									<span class="order-info__quantity order-info__quantity--minus"
+										onclick="removefromcart('{{item['code']}}','{{item['name']}}')">&minus;</span>
+									<input type="number" name="item_number" id="{{item['code']}}"
+										class="order-info__field items_quantity" value=0 min=0 disabled
+										data-price={{item['price']}}>
+									<span class="order-info__quantity order-info__quantity--plus"
+										onclick="addtocart('{{item['code']}}','{{item['name']}}')">+</span>
+								</div>
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Previous price:
+								</p>
+								<div class="order-info__prew-price">
+									<span class="order-info__price order-info__price--prew">
+										{{item['old_price']}}
+									</span>
+									<span class="order-info__price order-info__price--ntz order-info__price--prew">
+										£
+									</span>
+								</div>
+
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Price:
+								</p>
+								<span class="order-info__price">
+									{{item['price']}}
+								</span>
+								<span class="order-info__price order-info__price--ntz">
+									£
+								</span>
+							</div>
+
+							<input class="order-info__btn order-info__btn--shown noselect" type="button"
+								value="Add to cart" id="addToCardBtn_{{item['code']}}"
+								onclick="addtocart('{{item['code']}}','{{item['name']}}')">
+							<input class="order-info__btn order-info__btn--hidden noselect" type="button"
+								value="Go to cart" id="goToCardBtn_{{item['code']}}" onclick="goToCart();">
+						</div>
+					</li>
+					{% end %}
+				</ul>
+			</section>
+
+			<section class="order-info">
+				<h2 class="order-info__title">
+					Empireo Cosmetics 
+				</h2>
+				<p class="order-info__subtitle">
+					Parfum Classic collection 50 ml fragrance 20%
+				</p>
+				<ul class="order-info__list">
+					{% for item in items['empireo'] %}
+					<li class="order-info__item">
+						<div class="order-info__img-wrap">
+							<img src="{{item['image']}}" class="order-info__img">
+						</div>
+						<div class="order-info__inner">
+							<span class="order-info__name">{{item['name']}}</span>
+							<p class="order-info__description">{{item['description']}}</p>
+							{% if item['description2'] != '' %}
+								<p class="order-info__description">{{item['description2']}}</p>
+							{% end %}
+							<div class="order-info__data" id="quantity_{{item['name']}}">
+								<p class="order-info__text">
+									Quantity:
+								</p>
+								<div class="order-info__quantity-wrap">
+									<span class="order-info__quantity order-info__quantity--minus"
+										onclick="removefromcart('{{item['code']}}','{{item['name']}}')">&minus;</span>
+									<input type="number" name="item_number" id="{{item['code']}}"
+										class="order-info__field items_quantity" value=0 min=0 disabled
+										data-price={{item['price']}}>
+									<span class="order-info__quantity order-info__quantity--plus"
+										onclick="addtocart('{{item['code']}}','{{item['name']}}')">+</span>
+								</div>
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Previous price:
+								</p>
+								<div class="order-info__prew-price">
+									<span class="order-info__price order-info__price--prew">
+										{{item['old_price']}}
+									</span>
+									<span class="order-info__price order-info__price--ntz order-info__price--prew">
+										£
+									</span>
+								</div>
+
+							</div>
+
+							<div class="order-info__data">
+								<p class="order-info__text">
+									Price:
+								</p>
+								<span class="order-info__price">
+									{{item['price']}}
+								</span>
+								<span class="order-info__price order-info__price--ntz">
+									£
+								</span>
+							</div>
+
+							<input class="order-info__btn order-info__btn--shown noselect" type="button"
+								value="Add to cart" id="addToCardBtn_{{item['code']}}"
+								onclick="addtocart('{{item['code']}}','{{item['name']}}')">
+							<input class="order-info__btn order-info__btn--hidden noselect" type="button"
+								value="Go to cart" id="goToCardBtn_{{item['code']}}" onclick="goToCart();">
+						</div>
+					</li>
+					{% end %}
+				</ul>
+			</section>			
+
+			{% if lead_promo %}
+
+			<section class="buy-block">
+				<h3 class="buy-block__title">Make order</h3>
+				<div class="buy-block__inner">
+					<div class="buy-block__left">
+						<div class="buy-product__no-order-block" id="emptyCartBlock">
+							<p class="buy-product__empty-text">There is nothing in the cart yet</p>
+							<div class="buy-product__img-wrap">
+								<img class="buy-product__img-empty" src="img/cart.png" alt="">
+							</div>
+						</div>
+
+						<div class="cart-block cart-block--hidden" id="cartBlock">
+							<ul class="cart-block__list" id="cartList">
+							</ul>
+						</div>
+					</div>
+
+					<div class="buy-block__right">
+						<div class="buy-payment">
+							<div class="buy-product__form-wrap" id="payment">
+								<form class="form" action="#">
+									<p class="form__devider">Personal details</p>
+									<input name="login" value="{{lead_login}}" type="text"
+										placeholder="Your ntz.team login (optional)" class="form__field" id="userLogin">
+									<input name="name" value="{{lead_name}}" type="text"
+										placeholder="Your name and surname" required class="form__field" id="userName">
+									<input name="phone" value="{{lead_phone}}" type="tel"
+										placeholder="Your phone number" class="form__field" required id="userPhone">
+									<input name="email" value="{{lead_email}}" type="email" placeholder="Your email"
+										required class="form__field" id="userEmail">
+
+									<p class="form__devider">Personal details</p>
+									<div class="form__devider-wrap">
+
+										<select class="form__field" name="country" value="" id="userCountry"
+											placeholder="Country" onchange="count_delivery();">
+											{%for country in countries%}
+											<option value="{{country['code']}}"
+												{% if country['code'] == default_country%} selected {% end %}>
+												{{country['name']}}
+											</option>
+											{% end %}
+										</select>
+
+
+										<input name="address" value="" type="text" placeholder="City" required
+											class="form__field" id="userCity">
+										<input name="street" value="" type="text" placeholder="Street" required
+											class="form__field" id="userStreet">
+										<input name="building" value="" type="text" placeholder="Building" required
+											class="form__field" id="userBuilding">
+										<input name="postal_code" value="" type="text" placeholder="Zip/Postal Code"
+											required class="form__field" id="userPostal">
+									</div>
+
+									<div class="buy-payment__price-wrap">
+										<span class="buy-payment__price-text">Items price:</span>
+										<span class="buy-payment__price" id="itemsPrice">0</span><span
+											class="buy-payment__price"> £</span>
+									</div>
+
+									<div class="buy-payment__price-wrap">
+										<span class="buy-payment__price-text">Delivery:</span>
+										<span class="buy-payment__price" id="totalDelivery">0</span><span
+											class="buy-payment__price"> £</span>
+									</div>
+
+									<div class="buy-payment__price-wrap">
+										<span class="buy-payment__price-text">Inc. VAT
+											{{merchant.tax_percent}}%:</span>
+										<span class="buy-payment__price" id="totalTax"
+											data-tax={{merchant.tax_percent}}>0</span><span class="buy-payment__price">
+											£</span>
+									</div>
+
+									<div class="buy-payment__price-wrap buy-payment__price-wrap--total">
+										<span class="buy-payment__price-text buy-payment__price-text--total">Total
+											amount:</span>
+										<span class="buy-payment__price" id="totalPrice">0</span><span
+											class="buy-payment__price"> £</span>
+									</div>
+
+									<div class="buy-payment__btn-wrap">
+										<div class="buy-payment__block">
+											<img class="buy-payment__img" src="img/visa_mastercassrd.png"
+												alt="visa mastercard">
+											<input class="form__btn button noselect" type="button" value="Pay by card"
+												onclick="addOrder('FormRUR')">
+										</div>
+										<div class="buy-payment__block">
+											<img class="buy-payment__img" src="img/ntz.png" alt="Netizens">
+
+											<input class="form__btn button noselect" type="button" value="Get for NTZ"
+												onclick="addOrder('FormNTZ')">
+										</div>
+									</div>
+
+									<label class="form__footer">
+										<input class="form__checkbox" type="checkbox" name="personalDataAgree" checked>
+
+										<span class="form__footer-text">I agree with
+											<a href="docs/policy.pdf" download="">the privacy policy</a>
+										</span>
+									</label>
+									{% if lead_promo %}
+									<span class="form__footer-text">Control word: <span
+											class="form__footer-text form__footer-text--promo">{{lead_promo}}</span></span>
+									{% end %}
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			{% else %}
+			<div class="non-ref__wrap">
+				<p class="non-ref__text">
+					You need a referral link to make an order.
+					To get it, please contact the person who advised you this product or find a link in instagram by
+					hashtag <a class="non-ref__link"
+						href="https://www.instagram.com/explore/tags/netizensteam/">#netizensteam</a>
+				</p>
+			</div>
+			{% end %}
+		</div>
+	</main>
+
+	<footer class="footer">
+		<div class="layout-center-wrapper">
+			<div class="footer__docs-wrap">
+				<a class="footer__doc" href="docs/user_agreement.pdf" download target="_blank">User agreement</a>
+				<a class="footer__doc" href="docs/policy.pdf" download target="_blank">Privacy policy</a>
+				<!-- <a class="footer__doc" href="docs/sertificat.pdf" download target="_blank">Certificate of conformity</a> -->
+			</div>
+			<div class="footer__inner">
+				<p class="footer__ntz-txt">Official partner of the Netizens ecosystem</p>
+				<img class="footer__img" src="img/ntz_logo.png" alt="Netizens">
+			</div>
+		</div>
+	</footer>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/api.js"></script>
+	<script type="text/javascript" src="js/base.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+	<script>
+		window.cookieconsent.initialise({
+			"palette": {
+				"popup": {
+					"background": "#237afc"
+				},
+				"button": {
+					"background": "#fff",
+					"text": "#237afc"
+				}
+			}
+		});
+	</script>
+</body>
+
+</html>
